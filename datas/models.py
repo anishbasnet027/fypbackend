@@ -22,7 +22,7 @@ class TrekGuides(models.Model): #for trek guides
     guide_image=models.ImageField(upload_to='images',blank=False)
 
     def __str__(self):
-        return self.package_name
+        return self.guide_fullName
 
 class Destination(models.Model): #for destination
     destination_choices=[('T','Treking'),('H','Hiking')]

@@ -8,6 +8,10 @@ from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import get_user_model
+from django.http import HttpResponse,JsonResponse
+from rest_framework.parsers import JSONParser
+from .models import *
+from .serializers import *
 
 # Create your views here.
 def get_tokens_for_user(user):
@@ -32,9 +36,6 @@ class AuthView(APIView):
         '''
         Post request for logging in a User
         '''
-
-        
-
         username = request.data.get('username', None)
         password = request.data.get('password', None)
         user = authenticate(username=username, password=password)
@@ -62,3 +63,32 @@ class RegisterView(APIView):
         user.set_password(password)
         user.save()
         return Response("sucessfull")
+
+# for packages
+class PackageView(APIView):
+    def get(self,request):
+        package=Packages.objects.all()
+        print('package')
+        serializers=PackageSerailizer(package,many=True)
+        return JsonResponse(serializers.data,safe=False)
+
+        # elif request.method=='POST':
+        #     data = JSONParser().parse(request)
+        #     serializers=PackageSerailizer(data=data)
+
+        #     if serializers.is_valid():
+        #         serializers.save
+        #         return JsonResponse(serializers.data,status=201)
+        #     return JsonResponse(serializers.errors,status=400)
+
+# class TrekGuideView(APIView):
+#     def get(self,request):
+#         trekguide=TrekGuides.objects.all()
+#         print('package')
+#         serializers=TrekGuideSerailizer(trekguide,many=True)
+#         return JsonResponse(serializers.data,safe=False)
+
+class TrekGuideView(APIView):
+    def get(self, request):
+        serializer = TrekGuideSerailizer(TrekGuides.objects.all(), many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
