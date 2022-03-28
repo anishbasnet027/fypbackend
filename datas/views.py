@@ -66,29 +66,27 @@ class RegisterView(APIView):
 
 # for packages
 class PackageView(APIView):
-    def get(self,request):
-        package=Packages.objects.all()
-        print('package')
-        serializers=PackageSerailizer(package,many=True)
-        return JsonResponse(serializers.data,safe=False)
+    def get(self, request):
+        serializer = PackageSerailizer(Packages.objects.all(), many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-        # elif request.method=='POST':
-        #     data = JSONParser().parse(request)
-        #     serializers=PackageSerailizer(data=data)
-
-        #     if serializers.is_valid():
-        #         serializers.save
-        #         return JsonResponse(serializers.data,status=201)
-        #     return JsonResponse(serializers.errors,status=400)
-
-# class TrekGuideView(APIView):
-#     def get(self,request):
-#         trekguide=TrekGuides.objects.all()
-#         print('package')
-#         serializers=TrekGuideSerailizer(trekguide,many=True)
-#         return JsonResponse(serializers.data,safe=False)
 
 class TrekGuideView(APIView):
     def get(self, request):
         serializer = TrekGuideSerailizer(TrekGuides.objects.all(), many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class DestinationView(APIView):
+    def get(self, request):
+        serializer = DestinationSerailizer(Destination.objects.all(), many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class TransportationView(APIView):
+    def get(self, request):
+        serializer = TransportationSerailizer(Transportation.objects.all(), many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class AccomodationView(APIView):
+    def get(self, request):
+        serializer = AccomodationSerailizer(Accomodation.objects.all(), many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

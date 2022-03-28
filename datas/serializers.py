@@ -7,11 +7,27 @@ from .models import *
 class PackageSerailizer(serializers.ModelSerializer):
     class Meta:
         model=Packages
-        fields=['id','package_name','package_price','package_provider','package_days','package_description','package_image']
+        fields='__all__'
 
 
 
 class TrekGuideSerailizer(serializers.ModelSerializer):
     class Meta:
         model=TrekGuides
+        fields='__all__'
+
+class DestinationSerailizer(serializers.ModelSerializer):
+    class Meta:
+        model=Destination
+        fields='__all__'
+
+class TransportationSerailizer(serializers.ModelSerializer):
+    class Meta:
+        model=Transportation
+        fields='__all__'
+
+
+class AccomodationSerailizer(serializers.ModelSerializer):
+    class Meta:
+        model=Accomodation
         fields='__all__'
