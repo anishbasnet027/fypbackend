@@ -1,7 +1,6 @@
 from pyexpat import model
-from attr import field, fields
 from rest_framework import serializers
-from .models import Accomodation
+from ..datas.models import Accomodation
 
 class AccomodationSerailizer(serializers.ModelSerializer):
     class Meta:
