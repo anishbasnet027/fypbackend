@@ -31,3 +31,15 @@ class AccomodationSerailizer(serializers.ModelSerializer):
     class Meta:
         model=Accomodation
         fields='__all__'
+
+
+class DestiAccomodationSerailizer(serializers.ModelSerializer):
+    class Meta:
+        model=DestinationAccomodation
+        fields='__all__'
+
+
+class DestiTransportationSerailizer(serializers.ModelSerializer):
+    class Meta:
+        model=DestinationTransportation
+        fields='__all__'

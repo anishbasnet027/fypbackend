@@ -43,8 +43,8 @@ class Destination(models.Model): #for destination
     def __str__(self):
         return self.destination_name
 
+
 class Transportation(models.Model):
-    destination_id=models.ForeignKey(Destination, on_delete=models.CASCADE)
     transportation_name=models.CharField(max_length=100,blank=True)
     transportation_price=models.IntegerField(max_length=4, blank=False)
     transportation_contact=models.IntegerField(max_length=10, blank=False)
@@ -54,13 +54,28 @@ class Transportation(models.Model):
     def __str__(self):
         return self.transportation_name
 
-class Accomodation(models.Model):
+class DestinationTransportation(models.Model):
     destination_id=models.ForeignKey(Destination, on_delete=models.CASCADE)
+    transportation_id=models.ForeignKey(Transportation, on_delete=models.CASCADE)
+    transportation_name=models.CharField(max_length=100,blank=True)
+    destination_name=models.CharField(max_length=100,blank=True)
+    def __str__(self):
+        return self.transportation_name
+
+class Accomodation(models.Model):
     accomodation_name=models.CharField(max_length=100,blank=True)
     accomodation_price=models.IntegerField(max_length=4, blank=False)
     accomodation_contact=models.IntegerField(max_length=10, blank=False)
     accomodation_location=models.CharField(max_length=100,blank=True)
     accomodation_description=models.CharField(max_length=100,blank=True)
     accomodation_image=models.ImageField(upload_to='images',blank=False)
+    def __str__(self):
+        return self.accomodation_name
+
+class DestinationAccomodation(models.Model):
+    destination_id=models.ForeignKey(Destination, on_delete=models.CASCADE)
+    accomodation_id=models.ForeignKey(Accomodation, on_delete=models.CASCADE)
+    accomodation_name=models.CharField(max_length=100,blank=True)
+    destination_name=models.CharField(max_length=100,blank=True)
     def __str__(self):
         return self.accomodation_name

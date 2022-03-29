@@ -10,5 +10,7 @@ urlpatterns = [
     path('destination/',PackageView.as_view()),
     path('transportation/',TrekGuideView.as_view()),
     path('accomodation/',TrekGuideView.as_view()),
+    path('destinationtransportation/',DestiTransportationView.as_view()),
+    path('destinationaccomodation/',DestiAccomodationView.as_view()),
 ]
 
