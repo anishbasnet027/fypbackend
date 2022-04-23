@@ -19,7 +19,7 @@ class TrekGuides(models.Model): #for trek guides
     guide_experience=models.IntegerField(max_length=2, blank=False)
     guide_description=models.CharField(max_length=100,blank=True)
     guide_perDay_price=models.IntegerField(max_length=4, blank=False)
-    guide_image=models.ImageField(upload_to='images',blank=False)
+    guide_image=models.ImageField(upload_to='images/',blank=False)
 
     def __str__(self):
         return self.guide_fullName

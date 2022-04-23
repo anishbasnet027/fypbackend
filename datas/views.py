@@ -1,3 +1,4 @@
+from tkinter import E
 from urllib import response
 from django.shortcuts import render
 from django.conf import settings
@@ -44,7 +45,7 @@ class AuthView(APIView):
             cookie = get_tokens_for_user(user)['access']
             return Response ({'access_token':cookie})
         else:
-            return Response("invalid")
+            return Response("Wrong username or password found")
 
        
 
@@ -58,11 +59,15 @@ class RegisterView(APIView):
             'username': request.data.get('username', ''),
             'email': request.data.get('email', '')
         }
-
-        user=User.objects.create(**data)
-        user.set_password(password)
-        user.save()
-        return Response("sucessfull")
+        try:
+            user=User.objects.create(**data)
+            user.set_password(password)
+            user.save()
+            return Response("Registration sucessfull")
+        except Exception as e:
+            return Response("The username or email is already used")
+from rest_framework.parsers import MultiPartParser
+    
 
 # for packages
 class PackageView(APIView):
@@ -70,11 +75,17 @@ class PackageView(APIView):
         serializer = PackageSerailizer(Packages.objects.all(), many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
 class TrekGuideView(APIView):
+    parser_classes = (MultiPartParser,)
     def get(self, request):
         serializer = TrekGuideSerailizer(TrekGuides.objects.all(), many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def post(self,request):
+        serializer=TrekGuideSerailizer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
 
 class DestinationView(APIView):
     def get(self, request):
