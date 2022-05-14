@@ -35,7 +35,7 @@ class AuthView(APIView):
 
     def post(self, request):
         '''
-        Post request for logging in a User
+        login post req
         '''
         username = request.data.get('username', None)
         password = request.data.get('password', None)
@@ -45,7 +45,7 @@ class AuthView(APIView):
             cookie = get_tokens_for_user(user)['access']
             return Response ({'access_token':cookie})
         else:
-            return Response("Wrong username or password found")
+            return Response("Wrong username/ password found")
 
        
 

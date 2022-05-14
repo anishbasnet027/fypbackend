@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'fypbackend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'batuwa',  
+        'NAME': 'batuwaFYP',  
         'USER': 'root',  
         'PASSWORD': 'anish',  
         'HOST': '127.0.0.1',  
