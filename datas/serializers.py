@@ -33,11 +33,6 @@ class AccomodationSerailizer(serializers.ModelSerializer):
         fields='__all__'
 
 
-class DestiAccomodationSerailizer(serializers.ModelSerializer):
-    class Meta:
-        model=DestinationAccomodation
-        fields='__all__'
-
 
 class DestiTransportationSerailizer(serializers.ModelSerializer):
     class Meta:

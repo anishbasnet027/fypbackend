@@ -28,9 +28,6 @@ class admin_transportation(admin.ModelAdmin):
 class admin_accomodation(admin.ModelAdmin):
     List_display = ['First Name', 'Last Name', 'Email Address']
 
-@admin.register(DestinationAccomodation)
-class admin_DestinationAccomodation(admin.ModelAdmin):
-    List_display = ['First Name', 'Last Name', 'Email Address']
 
 @admin.register(DestinationTransportation)
 class admin_DestinationTransportation(admin.ModelAdmin):

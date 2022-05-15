@@ -5,7 +5,9 @@ class Packages(models.Model): #for packages
     package_name=models.CharField(max_length=40,blank=False)
     package_price=models.IntegerField(max_length=6,blank=False)
     package_provider=models.CharField(max_length=100, blank=False)
-    package_days=models.IntegerField(max_length=2, blank=False)
+    package_contact=models.IntegerField(max_length=10, blank=False)
+    package_date=models.CharField(max_length=15, blank=False)
+    package_time=models.CharField(max_length=7, blank=False)
     package_description=models.TextField(blank=True)
     package_image=models.ImageField(upload_to='images',blank=False)
 
@@ -15,10 +17,9 @@ class Packages(models.Model): #for packages
 class TrekGuides(models.Model): #for trek guides
     guide_fullName=models.CharField(max_length=40,blank=False)
     guide_contact=models.IntegerField(max_length=10,blank=False)
-    guide_email=models.EmailField(max_length=100, blank=False)
     guide_experience=models.IntegerField(max_length=2, blank=False)
-    guide_description=models.TextField(blank=True)
     guide_perDay_price=models.IntegerField(max_length=4, blank=False)
+    guide_description=models.TextField(blank=True)
     guide_image=models.ImageField(upload_to='images/',blank=False)
 
     def __str__(self):
@@ -31,8 +32,9 @@ class Destination(models.Model): #for destination
     destination_description=models.TextField(blank=False)
     destination_location=models.CharField(max_length=100,blank=True)
     destination_altitude=models.IntegerField(max_length=4, blank=False)
-    destination_latitude=models.FloatField(max_length=7,blank=False)
-    destination_longitude=models.FloatField(max_length=7,blank=False)
+    destination_latitude=models.FloatField(max_length=30,blank=False)
+    destination_longitude=models.FloatField(max_length=30,blank=False)
+    destination_days=models.IntegerField(max_length=3,blank=False)
     destination_distance=models.IntegerField(max_length=10, blank=False)
     destination_avgPrice=models.IntegerField(max_length=6, blank=False)
     destination_equipment=models.CharField(max_length=300, blank=False)
@@ -66,19 +68,12 @@ class DestinationTransportation(models.Model):
         return self.transportation_name
 
 class Accomodation(models.Model):
+    destination_id=models.ForeignKey(Destination, on_delete=models.CASCADE)
     accomodation_name=models.CharField(max_length=100,blank=True)
     accomodation_price=models.IntegerField(max_length=4, blank=False)
     accomodation_contact=models.IntegerField(max_length=10, blank=False)
     accomodation_location=models.CharField(max_length=100,blank=True)
     accomodation_description=models.TextField(blank=True)
     accomodation_image=models.ImageField(upload_to='images',blank=False)
-    def __str__(self):
-        return self.accomodation_name
-
-class DestinationAccomodation(models.Model):
-    destination_id=models.ForeignKey(Destination, on_delete=models.CASCADE)
-    accomodation_id=models.ForeignKey(Accomodation, on_delete=models.CASCADE)
-    accomodation_name=models.CharField(max_length=100,blank=True)
-    destination_name=models.CharField(max_length=100,blank=True)
     def __str__(self):
         return self.accomodation_name
