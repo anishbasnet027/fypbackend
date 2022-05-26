@@ -43,7 +43,7 @@ class AuthView(APIView):
 
         if user:
             cookie = get_tokens_for_user(user)['access']
-            return Response ({'access_token':cookie})
+            return Response ({'access_token':cookie, 'first_name':user.first_name, 'last_name':user.last_name,'email':user.email, 'username':user.username  })
         else:
             return Response("Wrong username/ password found")
 

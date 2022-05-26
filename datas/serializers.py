@@ -38,3 +38,4 @@ class DestiTransportationSerailizer(serializers.ModelSerializer):
     class Meta:
         model=DestinationTransportation
         fields='__all__'
+
