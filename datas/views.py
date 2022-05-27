@@ -111,13 +111,3 @@ class DestiAccomodationView(APIView):
     def get(self, request):
         serializer = DestiAccomodationSerailizer(DestinationAccomodation.objects.all(), many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-'''sawedae awed eawda awdd cawcaesssssssssssssssssssssssssssssssssssssssssssssssssss'''
-
-'''sawedae awed eawda awdd cawcaesssssssssssssssssssssssssssssssssssssssssssssssssss'''
-
-'''sawedae awed eawda awdd cawcaesssssssssssssssssssssssssssssssssssssssssssssssssss'''
-
-'''sawedae awed eawda awdd cawcaesssssssssssssssssssssssssssssssssssssssssssssssssss'''
-
-'''sawedae awed eawda awdd cawcaesssssssssssssssssssssssssssssssssssssssssssssssssss'''
