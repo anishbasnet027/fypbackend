@@ -16,10 +16,6 @@ class TrekGuideSerailizer(serializers.ModelSerializer):
         model=TrekGuides
         fields='__all__'
 
-class DestinationSerailizer(serializers.ModelSerializer):
-    class Meta:
-        model=Destination
-        fields='__all__'
 
 class TransportationSerailizer(serializers.ModelSerializer):
     class Meta:
@@ -39,3 +35,14 @@ class DestiTransportationSerailizer(serializers.ModelSerializer):
         model=DestinationTransportation
         fields='__all__'
 
+class DestinationSerailizer(serializers.ModelSerializer):
+    accomodations=serializers.SerializerMethodField()
+    transportations=serializers.SerializerMethodField()
+    class Meta:
+        model=Destination
+        fields='__all__'
+    def get_accomodations(self,object):
+        return AccomodationSerailizer(object.accomodations.all(),many=True).data
+
+    def get_transportations(self,object):
+        return TransportationSerailizer(object.transportations.all(),many=True).data

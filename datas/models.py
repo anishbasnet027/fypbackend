@@ -50,6 +50,7 @@ class Destination(models.Model): #for destination
 
 
 class Transportation(models.Model):
+    destination_id=models.ForeignKey(Destination, related_name="transportations",on_delete=models.CASCADE)
     transportation_name=models.CharField(max_length=100,blank=True)
     transportation_price=models.IntegerField(max_length=4, blank=False)
     transportation_contact=models.IntegerField(max_length=10, blank=False)
@@ -68,7 +69,7 @@ class DestinationTransportation(models.Model):
         return self.transportation_name
 
 class Accomodation(models.Model):
-    destination_id=models.ForeignKey(Destination, on_delete=models.CASCADE)
+    destination_id=models.ForeignKey(Destination, related_name="accomodations",on_delete=models.CASCADE)
     accomodation_name=models.CharField(max_length=100,blank=True)
     accomodation_price=models.IntegerField(max_length=4, blank=False)
     accomodation_contact=models.IntegerField(max_length=10, blank=False)

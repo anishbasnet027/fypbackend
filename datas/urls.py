@@ -7,8 +7,8 @@ urlpatterns = [
     path('packages/',PackageView.as_view()),
     path('trekguides/',TrekGuideView.as_view()),
     path('destination/',DestinationView.as_view()),
-    path('transportation/',TrekGuideView.as_view()),
-    path('accomodation/',TrekGuideView.as_view()),
+    path('transportation/',TransportationView.as_view()),
+    path('accomodation/',AccomodationView.as_view()),
     path('destinationtransportation/',DestiTransportationView.as_view()),
     path('destinationaccomodation/',DestiAccomodationView.as_view()),
 ]
