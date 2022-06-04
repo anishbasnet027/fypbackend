@@ -63,7 +63,7 @@ class RegisterView(APIView):
             user=User.objects.create(**data)
             user.set_password(password)
             user.save()
-            return Response("Registration sucessfull")
+            return Response("Registration sucessful")
         except Exception as e:
             return Response("The username or email is already used")
 from rest_framework.parsers import MultiPartParser
