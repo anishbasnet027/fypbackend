@@ -106,8 +106,3 @@ class DestiTransportationView(APIView):
     def get(self, request):
         serializer = DestiTransportationSerailizer(DestinationTransportation.objects.all(), many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-class DestiAccomodationView(APIView):
-    def get(self, request):
-        serializer = DestiAccomodationSerailizer(DestinationAccomodation.objects.all(), many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
